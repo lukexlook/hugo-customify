@@ -13,9 +13,29 @@ Based on [the search results regarding Hugo@v0.119.0](https://sourcegraph.com/se
 Based on the above information, it is believed that registering custom functions to
 **TemplateFuncsNamespace** in `tpl/transform/init.go` is enough for simple cases.
 
+> [!NOTE]
+> PoC tests have shown expected results currently.
+
 ## Install the Modified Hugo
 
 ```bash
 cd hugo
 CGO_ENABLED=1 go install -tags extended .
+```
+
+## Install the Plugins
+
+```bash
+cd plugins
+./install.sh
+```
+
+## Demo
+
+```bash
+cd docs
+hugo server
+# notice the log at the beginning: [plugins] loaded [customLower]
+# navigate to http://localhost:1313/docs/hello-world/
+# check docs/content/hello-world.md and docs/layouts/shortcodes/hello.html
 ```
